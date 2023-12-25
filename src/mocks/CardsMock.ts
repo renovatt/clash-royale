@@ -1,6 +1,6 @@
 import type { Root } from "~/@types";
 
-export const Cards: Root = {
+export const CardsMock: Root = {
   "items": [
     {
       "name": "Knight",
