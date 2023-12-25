@@ -2,28 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'clash-royale';
+  src: url('../assets/fonts/YouBlockhead.ttf') format('opentype');
+}
+
 *{
   margin:0;
   padding:0;
   box-sizing: border-box;
+  font-family: clash-royale, 'roboto_slabbold';
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+body{
+  background: #002442 url(../assets/img/bg_modal.jpg) no-repeat fixed;
+  background-size: 120% auto !important;
 }
 
-@media (min-width: 1024px) {
+@media screen and (min-width: 667px){
   body {
-    display: flex;
-    place-items: center;
+    background: #002442 url(../assets/img/bg_modal_desk.jpg) no-repeat fixed;
   }
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+@media only screen and (orientation: landscape){
+  body {
+    background-size: 100% auto !important;
+  }
+}
+
+@layer base {
+  body {
+    @apply leading-relaxed tracking-widest scrollbar-hide;
+  }
+}
+
+@layer utilities{
+  .bg-body {
+    background: rgba(78, 181, 252, 1.0);
+    background: radial-gradient(
+      at center, 
+      rgba(78, 181, 252, 1.0), 
+      rgba(0, 37, 66, 1.0)
+    );
   }
 }
