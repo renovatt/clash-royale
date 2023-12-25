@@ -27,6 +27,7 @@ export default {
       backgroundImage:{
         modal: "url('/src/assets/img/bg_modal.jpg')",
         modal_desk: "url('/src/assets/img/bg_modal_desk.jpg')",
+        challenge: "url('/src/assets/img/hero_bg_clashroyale.webp')",
       }
     },
   },

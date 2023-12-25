@@ -22,7 +22,7 @@ const isOpen: boolean = inject('isOpen') ?? false;
         <div class="fixed inset-0 bg-black/50 bg-modal bg-center bg-no-repeat md:bg-modal_desk" />
       </TransitionChild>
 
-      <div class="fixed inset-0 overflow-y-auto">
+      <div class="fixed inset-0 overflow-y-auto scrollbar-hide">
         <div class="flex min-h-full items-center justify-center p-4 text-center">
           <TransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0 scale-95"
             enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"

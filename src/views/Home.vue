@@ -5,7 +5,7 @@ import ListCard from '@/components/modules/ListCard.vue';
 
 <template>
   <div class="w-full">
-    <Header />
+  
     <ListCard />
   </div>
 </template>
