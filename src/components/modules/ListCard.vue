@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, provide, ref, watch } from 'vue';
+import { computed, onMounted, provide, ref, watch } from 'vue';
 import type { Item } from '~/@types';
 import Modal from './Modal.vue';
 import Card from '../elements/Card.vue';
@@ -32,6 +32,9 @@ const handleSelectRarity = (rarity: string) => {
   searchInput.value = ''
 }
 
+const cardclass = computed(() => `bg-${filteredCards.value[0]?.rarity}`)
+console.log(cardclass.value)
+
 watch([raritySelected, searchInput], ([newRarity]) => {
   raritySelected.value = newRarity
   filteredCards.value = CardsMock.items.filter(cards => raritySelected.value ? cards.rarity === raritySelected.value : searchInput.value ? cards.name.toLocaleLowerCase().includes(searchInput.value.toLocaleLowerCase()) : cards)
@@ -46,7 +49,7 @@ onMounted(() => {
   <section class="flex flex-col items-center justify-center p-2">
     <Modal v-for="card in selecetedCard" :key="card.id" :card="card" @close="isOpen = !isOpen" />
 
-    <header class="my-4 flex w-full max-w-7xl items-center justify-between px-10">
+    <header class="my-4 flex w-full max-w-7xl flex-col-reverse items-center justify-between gap-5 px-10 md:flex-row">
       <SearchInput @name-card="handleSearchInput" />
       <SelectRarity @rarity="handleSelectRarity" />
     </header>
@@ -57,7 +60,8 @@ onMounted(() => {
 
     <section
       class="grid h-screen grid-cols-1 gap-5 overflow-y-auto p-2 scrollbar-hide sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-      <Card v-for="card in filteredCards" :key="card.id" @click="handleGetCardId(card.id); openModal()">
+      <Card :rarity="card.rarity" v-for="card in filteredCards" :key="card.id"
+        @click="handleGetCardId(card.id); openModal()">
         <template #name>
           {{ card.name }}
         </template>
