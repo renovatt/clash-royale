@@ -6,12 +6,14 @@ import {
   DialogPanel,
   DialogTitle,
 } from '@headlessui/vue'
-import { inject } from 'vue';
+import { computed, inject } from 'vue';
 import type { Item } from '~/@types';
 
 defineEmits(['close'])
 const { card } = defineProps<{ card: Item; }>()
 const isOpen: boolean = inject('isOpen') ?? false;
+
+const cardclass = computed(() => `border-${card.rarity} text-${card.rarity}`);
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const isOpen: boolean = inject('isOpen') ?? false;
     <Dialog as="div" @close="$emit('close')" class="relative z-50">
       <TransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0" enter-to="opacity-100"
         leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
-        <div class="fixed inset-0 bg-black/50 bg-modal bg-center bg-no-repeat md:bg-modal_desk" />
+        <div class="fixed inset-0 bg-black/70" />
       </TransitionChild>
 
       <div class="fixed inset-0 overflow-y-auto scrollbar-hide">
@@ -28,11 +30,16 @@ const isOpen: boolean = inject('isOpen') ?? false;
             enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
             leave-to="opacity-0 scale-95">
             <DialogPanel
-              class="relative flex w-full max-w-md flex-col items-center justify-center rounded-2xl border-b-4 border-400 bg-600 p-6 text-left align-middle shadow-xl transition-all">
-              <img src="../../assets/img/stamp_deck.png" alt="stamp_deck" class="-mt-7 w-52">
+              class="relative flex w-full max-w-md flex-col items-center justify-center rounded-2xl border-b-4 border-400 bg-600 p-4 text-left align-middle shadow-xl transition-all">
+              <img src="../../assets/img/stamp_deck.png" alt="stamp_deck" class="-mt-5 w-52">
 
               <DialogTitle as="h3" class="my-2 text-2xl font-medium leading-6 text-gray-900 drop-shadow-smooth">
                 {{ card.name }}
+              </DialogTitle>
+
+              <DialogTitle as="h3" :class="cardclass"
+                class="my-2 text-2xl font-medium uppercase leading-6 drop-shadow-smooth">
+                {{ card.rarity }}
               </DialogTitle>
 
               <figure class="grid p-2">
@@ -40,28 +47,25 @@ const isOpen: boolean = inject('isOpen') ?? false;
               </figure>
 
               <article class="flex w-full flex-col items-center justify-center gap-4 rounded-lg bg-800/80 py-4">
-                <span class="text-xs font-bold text-600 drop-shadow-smooth">Rarity:
-                  <span class="capitalize text-600 drop-shadow-smooth"> {{ card.rarity }}</span>
+                <span class="text-xs font-bold text-600 drop-shadow-contour">Elixir Cost:
+                  <span class="text-600 drop-shadow-contour"> {{ card.elixirCost }}</span>
                 </span>
 
-                <span class="text-xs font-bold text-600 drop-shadow-smooth">Elixir Cost:
-                  <span class="text-600 drop-shadow-smooth"> {{ card.elixirCost }}</span>
+                <span class="text-xs font-bold text-600 drop-shadow-contour">Max Level:
+                  <span class="text-600 drop-shadow-contour"> {{ card.maxLevel }}</span>
                 </span>
 
-                <span class="text-xs font-bold text-600 drop-shadow-smooth">Max Level:
-                  <span class="text-600 drop-shadow-smooth"> {{ card.maxLevel }}</span>
-                </span>
-
-                <span v-if="card.maxEvolutionLevel" class="text-xs font-bold text-600 drop-shadow-smooth">Evolution Level:
-                  <span class="text-600 drop-shadow-smooth"> {{ card.maxEvolutionLevel }}</span>
+                <span v-if="card.maxEvolutionLevel" class="text-xs font-bold text-600 drop-shadow-contour">Evolution
+                  Level:
+                  <span class="text-600 drop-shadow-contour"> {{ card.maxEvolutionLevel }}</span>
                 </span>
               </article>
 
               <div class="mt-4 w-full">
                 <button type="button"
-                  class="inline-flex w-full justify-center rounded-lg border border-transparent bg-700 p-4 text-sm font-medium text-600 opacity-90 hover:opacity-100 focus:outline-none"
+                  class="inline-flex w-full justify-center rounded-lg border border-transparent bg-700 p-4 font-medium text-600 opacity-90 transition-all ease-out hover:opacity-100 focus:outline-none"
                   @click="$emit('close')">
-                  <span class="drop-shadow-smooth">Back</span>
+                  <span class="text-base drop-shadow-contour">Back</span>
                 </button>
               </div>
             </DialogPanel>
