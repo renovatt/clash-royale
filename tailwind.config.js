@@ -34,7 +34,20 @@ export default {
         'gradient-epic': 'linear-gradient(to top, #cc00ff, #002442)',
         'gradient-legendary': 'linear-gradient(to top, #efbdff, #002442)',
         'gradient-champion': 'linear-gradient(to top, #f3d40d, #002442)',
-      }
+      }, keyframes: {
+        open: {
+          from: {
+            opacity: '0',
+            transform: 'translateX(20px)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translateX(0px)',
+          },
+        },
+      }, animation: {
+        open: 'open 0.3s ease-out',
+      },
     },
   },
   safelist: [
