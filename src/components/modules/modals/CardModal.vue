@@ -45,7 +45,7 @@ const cardclass = computed(() => `border-${card.rarity} text-${card.rarity}`);
               </DialogTitle>
 
               <figure class="grid p-2">
-                <img :src="card.iconUrls.medium" class="h-80 rounded-lg p-2" />
+                <img :src="card.iconUrls.medium" class="h-64 rounded-lg p-2 drop-shadow-xl" />
               </figure>
 
               <article class="flex w-full flex-col items-center justify-center gap-4 rounded-lg bg-800 py-4">

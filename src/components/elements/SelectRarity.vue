@@ -21,9 +21,9 @@ const handleSelectRarity = (rarityOption: string) => {
     <Menu as="div" class="relative inline-block w-full text-left">
       <div class="w-full">
         <MenuButton
-          class="inline-flex w-full justify-around rounded-lg bg-black/20 p-4 text-sm font-medium text-600 hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-600/75">
+          class="inline-flex w-full justify-around rounded-lg bg-black/20 p-4 text-sm font-medium text-600/50 hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-600/75">
           Raritys
-          <ChevronDown class="-mr-1 ml-2 h-5 w-5 text-600" aria-hidden="true" />
+          <ChevronDown class="-mr-1 ml-2 h-5 w-5 text-600/50" aria-hidden="true" />
         </MenuButton>
       </div>
 
