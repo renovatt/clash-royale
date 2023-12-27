@@ -6,7 +6,9 @@ import { CardsMock } from '@/mocks/CardsMock';
 import SearchInput from '../elements/SearchInput.vue';
 import SelectRarity from '../elements/SelectRarity.vue';
 import CardModal from './modals/CardModal.vue';
+import { LayoutGrid } from 'lucide-vue-next';
 
+const grid = ref(false)
 const isOpen = ref(false)
 const searchInput = ref('')
 const raritySelected = ref('')
@@ -47,7 +49,13 @@ onMounted(() => {
 
     <header class="my-4 flex w-full max-w-7xl flex-col-reverse items-center justify-between gap-5 px-10 md:flex-row">
       <SearchInput @name-card="handleSearchInput" />
-      <SelectRarity @rarity="handleSelectRarity" />
+
+      <div class="relative flex items-center justify-center gap-5">
+        <SelectRarity @rarity="handleSelectRarity" />
+        <LayoutGrid
+          class="absolute -right-14 h-10 w-10 cursor-pointer text-600/50 transition-all ease-out hover:text-700 md:static md:flex"
+          @click="grid = !grid" />
+      </div>
     </header>
 
     <div v-show="filteredCards.length === 0" class="flex h-20 w-full items-center justify-center">
@@ -55,15 +63,15 @@ onMounted(() => {
     </div>
 
     <section
-      class="grid h-screen grid-cols-1 gap-5 overflow-y-auto p-2 scrollbar-hide sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-      <Card :rarity="card.rarity" v-for="card in filteredCards" :key="card.id"
+      :class="`${grid ? 'flex flex-wrap justify-around items-start gap-2 px-10' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5'} overflow-y-auto p-2 scrollbar-hide max-w-7xl h-screen`">
+      <Card :rarity="card.rarity" :grid="grid" v-for="card in filteredCards" :key="card.id"
         @click="handleGetCardId(card.id); openModal()">
         <template #name>
           {{ card.name }}
         </template>
 
         <template #image>
-          <img :src="card.iconUrls.medium" :alt="card.name" class="p-2" />
+          <img :src="card.iconUrls.medium" :alt="card.name" :class="`block ${grid ? 'h-20' : 'w-full'} `" />
         </template>
       </Card>
     </section>
