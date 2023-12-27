@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import type { Challenge } from '~/@types';
 import SlotItem from '../elements/SlotItem.vue';
+import { provide, ref } from 'vue';
+import PrizeModal from './PrizeModal.vue';
 const { challenge } = defineProps<{ challenge: Challenge }>()
+const isOpen = ref(false)
+provide('isOpen', isOpen)
+const openModal = () => isOpen.value = true
 </script>
 
 <template>
@@ -10,7 +15,10 @@ const { challenge } = defineProps<{ challenge: Challenge }>()
       <img class="h-full w-full object-cover" :src="challenge.iconUrl" :alt="challenge.name">
     </figure>
 
-    <figure class="absolute bottom-2 right-2 h-12 cursor-pointer transition-all ease-in-out hover:scale-105">
+    <PrizeModal :challenge="challenge" @close="isOpen = !isOpen"/>
+
+    <figure @click="openModal"
+      class="absolute bottom-2 right-2 h-12 cursor-pointer transition-all ease-in-out hover:scale-105">
       <img src="../../assets/img/chest.png" alt="chest-image" class="h-full">
     </figure>
 
