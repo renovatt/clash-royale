@@ -7,9 +7,10 @@ import {
 } from '@headlessui/vue'
 import { inject } from 'vue';
 import type { Challenge } from '~/@types';
-import Prizes from './Prizes.vue';
+import Prizes from '../Prizes.vue';
 
 defineEmits(['close'])
+
 const { challenge } = defineProps<{ challenge: Challenge }>()
 const isOpen: boolean = inject('isOpen') ?? false;
 </script>
@@ -29,7 +30,7 @@ const isOpen: boolean = inject('isOpen') ?? false;
             leave-to="opacity-0 scale-95">
             <DialogPanel
               class="relative flex w-full max-w-md flex-col items-center justify-center rounded-2xl border-b-4 border-400 bg-600 p-4 text-left align-middle shadow-xl transition-all">
-              <img src="../../assets/img/chest.png" alt="stamp_deck"
+              <img src="../../../assets/img/chest.png" alt="stamp_deck"
                 class="my-1 mb-5 w-20 drop-shadow-2xl transition-all ease-out hover:scale-110">
               <Prizes :challenge="challenge" />
               <div class="mt-4 w-full">

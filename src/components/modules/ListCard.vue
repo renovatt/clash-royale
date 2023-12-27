@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, provide, ref, watch } from 'vue';
+import { onMounted, provide, ref, watch } from 'vue';
 import type { Item } from '~/@types';
-import Modal from './Modal.vue';
 import Card from '../elements/Card.vue';
 import { CardsMock } from '@/mocks/CardsMock';
 import SearchInput from '../elements/SearchInput.vue';
 import SelectRarity from '../elements/SelectRarity.vue';
+import CardModal from './modals/CardModal.vue';
 
 const isOpen = ref(false)
 const searchInput = ref('')
@@ -14,7 +14,6 @@ const filteredCards = ref<Item[]>([])
 const selecetedCard = ref<Item[]>([])
 
 provide('isOpen', isOpen)
-provide('rarity', raritySelected)
 
 const openModal = () => isOpen.value = true
 
@@ -32,9 +31,6 @@ const handleSelectRarity = (rarity: string) => {
   searchInput.value = ''
 }
 
-const cardclass = computed(() => `bg-${filteredCards.value[0]?.rarity}`)
-console.log(cardclass.value)
-
 watch([raritySelected, searchInput], ([newRarity]) => {
   raritySelected.value = newRarity
   filteredCards.value = CardsMock.items.filter(cards => raritySelected.value ? cards.rarity === raritySelected.value : searchInput.value ? cards.name.toLocaleLowerCase().includes(searchInput.value.toLocaleLowerCase()) : cards)
@@ -47,7 +43,7 @@ onMounted(() => {
 
 <template>
   <section class="flex flex-col items-center justify-center p-2">
-    <Modal v-for="card in selecetedCard" :key="card.id" :card="card" @close="isOpen = !isOpen" />
+    <CardModal v-for="card in selecetedCard" :key="card.id" :card="card" @close="isOpen = !isOpen" />
 
     <header class="my-4 flex w-full max-w-7xl flex-col-reverse items-center justify-between gap-5 px-10 md:flex-row">
       <SearchInput @name-card="handleSearchInput" />

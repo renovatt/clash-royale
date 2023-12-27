@@ -8,11 +8,12 @@ import {
 } from '@headlessui/vue'
 import { computed, inject } from 'vue';
 import type { Item } from '~/@types';
+import SlotItem from '@/components/elements/SlotItem.vue';
 
 defineEmits(['close'])
+
 const { card } = defineProps<{ card: Item; }>()
 const isOpen: boolean = inject('isOpen') ?? false;
-
 const cardclass = computed(() => `border-${card.rarity} text-${card.rarity}`);
 </script>
 
@@ -31,34 +32,49 @@ const cardclass = computed(() => `border-${card.rarity} text-${card.rarity}`);
             leave-to="opacity-0 scale-95">
             <DialogPanel
               class="relative flex w-full max-w-md flex-col items-center justify-center rounded-2xl border-b-4 border-400 bg-600 p-4 text-left align-middle shadow-xl transition-all">
-              <img src="../../assets/img/stamp_deck.png" alt="stamp_deck" class="-mt-5 w-52">
+              <img src="../../../assets/img/stamp_deck.png" alt="stamp_deck" class="-mt-5 w-52">
 
-              <DialogTitle as="h3" class="my-2 text-2xl font-medium leading-6 text-gray-900 drop-shadow-smooth">
+              <DialogTitle as="h3"
+                class="my-2 text-center text-3xl font-medium leading-10 text-gray-900 drop-shadow-smooth">
                 {{ card.name }}
               </DialogTitle>
 
               <DialogTitle as="h3" :class="cardclass"
-                class="my-2 text-2xl font-medium uppercase leading-6 drop-shadow-smooth">
-                {{ card.rarity }}
+                class="my-2 text-2xl font-medium capitalize leading-6 drop-shadow-smooth">
+                {{ card.rarity }} card
               </DialogTitle>
 
               <figure class="grid p-2">
                 <img :src="card.iconUrls.medium" class="h-80 rounded-lg p-2" />
               </figure>
 
-              <article class="flex w-full flex-col items-center justify-center gap-4 rounded-lg bg-800/80 py-4">
-                <span class="text-xs font-bold text-600 drop-shadow-contour">Elixir Cost:
-                  <span class="text-600 drop-shadow-contour"> {{ card.elixirCost }}</span>
-                </span>
+              <article class="flex w-full flex-col items-center justify-center gap-4 rounded-lg bg-800 py-4">
+                <SlotItem>
+                  <template #title>
+                    Elixir Cost:
+                  </template>
+                  <template #description>
+                    {{ card.elixirCost }}
+                  </template>
+                </SlotItem>
 
-                <span class="text-xs font-bold text-600 drop-shadow-contour">Max Level:
-                  <span class="text-600 drop-shadow-contour"> {{ card.maxLevel }}</span>
-                </span>
+                <SlotItem>
+                  <template #title>
+                    Max Level:
+                  </template>
+                  <template #description>
+                    {{ card.maxLevel }}
+                  </template>
+                </SlotItem>
 
-                <span v-if="card.maxEvolutionLevel" class="text-xs font-bold text-600 drop-shadow-contour">Evolution
-                  Level:
-                  <span class="text-600 drop-shadow-contour"> {{ card.maxEvolutionLevel }}</span>
-                </span>
+                <SlotItem v-if="card.maxEvolutionLevel">
+                  <template #title>
+                    Max Evolution Level:
+                  </template>
+                  <template #description>
+                    {{ card.maxEvolutionLevel }}
+                  </template>
+                </SlotItem>
               </article>
 
               <div class="mt-4 w-full">
