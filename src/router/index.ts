@@ -10,10 +10,20 @@ const routes = [
     component: Home
   },
   {
+    path: '/cards',
+    name: 'cards',
+    component: lazyLoad('Cards')
+  },
+  {
     path: '/challenges',
     name: 'challenges',
     component: lazyLoad('Challenges')
   },
+  {
+    path: '/:pathMatch(.*)',
+    name: 'not-found',
+    component:  lazyLoad('NotFound')
+  }
 ]
 
 const router = createRouter({
