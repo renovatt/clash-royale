@@ -64,16 +64,36 @@ onMounted(() => {
 
     <section
       :class="`${grid ? 'flex flex-wrap justify-around items-start gap-2 px-10' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5'} overflow-y-auto p-2 scrollbar-hide max-w-7xl h-screen`">
-      <Card :rarity="card.rarity" :grid="grid" v-for="card in filteredCards" :key="card.id"
-        @click="handleGetCardId(card.id); openModal()">
-        <template #name>
-          {{ card.name }}
-        </template>
+      <TransitionGroup name="fade">
+        <Card :rarity="card.rarity" :grid="grid" v-for="card in filteredCards" :key="card.id"
+          @click="handleGetCardId(card.id); openModal()">
+          <template #name>
+            {{ card.name }}
+          </template>
 
-        <template #image>
-          <img :src="card.iconUrls.medium" :alt="card.name" :class="`block ${grid ? 'h-20' : 'w-full'} `" />
-        </template>
-      </Card>
+          <template #image>
+            <img :src="card.iconUrls.medium" :alt="card.name" :class="`block ${grid ? 'h-20' : 'w-full'} `" />
+          </template>
+        </Card>
+      </TransitionGroup>
     </section>
   </section>
 </template>
+
+<style scoped>
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scaleY(0.01) translate(30px, 0);
+}
+
+.fade-leave-active {
+  position: absolute;
+}
+</style>
