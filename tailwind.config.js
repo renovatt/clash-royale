@@ -28,6 +28,7 @@ export default {
         modal: "url('/src/assets/img/bg_modal.jpg')",
         modal_desk: "url('/src/assets/img/bg_modal_desk.jpg')",
         challenge: "url('/src/assets/img/hero_bg_clashroyale.webp')",
+        footer: 'linear-gradient(180deg, #245fc6 1%, #2887f0)',
 
         'gradient-common': 'linear-gradient(to top, #1e1e1e, #002442)',
         'gradient-rare': 'linear-gradient(to top, #ff6600, #002442)',
