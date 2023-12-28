@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 
-const lazyLoad = (view: string) => import(`../views/${view}.vue`)
+const lazyLoad = (view: string) => {
+  return () => import(`../views/${view}.vue`)
+}
 
 const routes = [
   {
@@ -22,7 +24,7 @@ const routes = [
   {
     path: '/:pathMatch(.*)',
     name: 'not-found',
-    component:  lazyLoad('NotFound')
+    component: lazyLoad('NotFound')
   }
 ]
 
