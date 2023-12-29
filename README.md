@@ -1,46 +1,81 @@
-# clash-royale
+<div align='center'>
+  <img src="./src/assets/img/logo_clashroyale.webp" width="150px">
+</div>
 
-This template should help get you started developing with Vue 3 in Vite.
+## 🏋️‍♂️ Sobre o Projeto
 
-## Recommended IDE Setup
+### Explore todas as cartas disponíveis no universo do jogo ``Clash Royale``, obtendo informações detalhadas sobre cada uma. A pesquisa pode ser realizada por nome, e é possível filtrar as cartas de acordo com sua raridade.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### Os dados são fornecidos diretamente pela API oficial da ``Supercell``, garantindo precisão e confiabilidade nas informações apresentadas.
 
-## Type Support for `.vue` Imports in TS
+[Ver Projeto](https://clash-royale-renovatt.vercel.app/) 🚀
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## 🎨 Visual do Projeto
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### ***Web Layout***
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+![Web 1](.github/web-1.png) 
+![Web 2](.github/web-2.png)
+![Web 3](.github/web-3.png)
+![Web 4](.github/web-4.png)
+![Web 5](.github/web-5.png)
+![Web 6](.github/web-6.png)
+![Web 7](.github/web-7.png)
 
-## Customize configuration
+### ***Mobile Layout***
+![Mobile 1](.github/mobile-1.png)
+![Mobile 2](.github/mobile-2.png)
+![Mobile 3](.github/mobile-3.png)
+![Mobile 4](.github/mobile-4.png)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## 🛠️ Tecnologias
 
-## Project Setup
+💻 **Front-end**
+- [Vue.js 3.3.11](https://vuejs.org/)
+- [Typescript](https://www.typescriptlang.org)
+- [Vite](https://vitejs.dev/)
+
+📚 **Bibliotecas**
+- [headlessui](https://headlessui.com/)
+- [vueuse](https://vueuse.org/)
+
+🎨 **Estilização**
+- [tailwindcss](https://tailwindcss.com/docs/installation)
+- [lucide](https://lucide.dev/)
+
+🔋 **Versionamento e Deploy**
+- [Git](https://git-scm.com)
+- [Vercel](https://vercel.com/)
+
+## ⚙️ Configurações e Instalação
 
 ```sh
+# clonando o projeto
+git clone https://github.com/renovatt/clash-royale.git
+```
+
+```sh
+# Instalando as dependências
 npm install
 ```
 
-### Compile and Hot-Reload for Development
-
 ```sh
+# Compilar e abrir o programa para desenvolvimento
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
-
 ```sh
+# Compilar e minificar para produção
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+**Como contribuir?**
 
-```sh
-npm run lint
-```
+- Você pode dar suporte me seguindo aqui no GitHub
+- Dando uma estrela no projeto
+- Criar uma conexão comigo no linkedin fazendo parte da minha networking e curtir o meu projeto.
+
+<br>
+
+**Criado por**
+[@renovatt](https://www.linkedin.com/in/renovatt/)
